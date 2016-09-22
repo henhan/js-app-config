@@ -121,4 +121,15 @@ describe("config generation", () => {
         expect(testFunction)
             .toThrowError("Environment key 'prod' is not allowed to be nested.");
     });
+
+    it("should handle config put in js file", () => {
+        const devConfig = generateConfig({
+            environment: "dev",
+            file: "jsconf.js",
+            dir: path.join(__dirname, "resources")
+        });
+
+        expect(devConfig.env).toBe("myDev");
+        expect(devConfig.a).toBe(1);
+    });
 });
