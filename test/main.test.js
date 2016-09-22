@@ -74,11 +74,13 @@ describe("config generation", () => {
         expect(devConfig.keys.key1).toBeDefined();
         expect(devConfig.keys.key2).not.toBeDefined();
         expect(devConfig.keys.key1).toBe("val def");
+        expect(devConfig.prodOnly).toBeNull();
 
         expect(prodConfig.keys.key1).toBeDefined();
         expect(prodConfig.keys.key2).toBeDefined();
         expect(prodConfig.keys.key1).toBe("val prod");
         expect(prodConfig.keys.key2).toBe("only prod");
+        expect(prodConfig.prodOnly).toBe("isProd");
     });
 
     it("should handle nested objects", () => {

@@ -21,5 +21,9 @@
                 "dev": "dev value"
             }
         }
+    },
+    "prodOnly": {
+        "default": null,
+        "prod": "isProd"
     }
 }
