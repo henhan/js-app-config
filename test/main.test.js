@@ -2,12 +2,13 @@
 
 const generateConfig = require("../lib/index.js");
 const path = require("path");
+const resourceDir = path.join(__dirname, "resources");
 
 describe("config generation", () => {
     it("should return the loaded json if no special keys are present", () => {
         const config = generateConfig({
             file: "base.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         expect(config).toBeDefined();
@@ -18,7 +19,7 @@ describe("config generation", () => {
     it("should handle arrays", () =>  {
         const config = generateConfig({
             file: "base.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         expect(config.array).toEqual([1,2,3]);
@@ -27,7 +28,7 @@ describe("config generation", () => {
     it("should return default values when no env is set", () => {
         const defaultConfig = generateConfig({
             file: "environmentDependent.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         expect(defaultConfig).toBeDefined();
@@ -39,13 +40,13 @@ describe("config generation", () => {
         const devConfig = generateConfig({
             environment: "dev",
             file: "environmentDependent.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         const prodConfig = generateConfig({
             environment: "prod",
             file: "environmentDependent.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         expect(devConfig).toBeDefined();
@@ -61,13 +62,13 @@ describe("config generation", () => {
         const devConfig = generateConfig({
             environment: "dev",
             file: "environmentDependent.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         const prodConfig = generateConfig({
             environment: "prod",
             file: "environmentDependent.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         expect(devConfig.keys.key1).toBeDefined();
@@ -84,7 +85,7 @@ describe("config generation", () => {
         const devConfig = generateConfig({
             environment: "dev",
             file: "environmentDependent.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         expect(devConfig.nested.one.two).toBe("dev value");
@@ -95,7 +96,7 @@ describe("config generation", () => {
             environment: "dev",
             defaultKey: "customDefault",
             file: "customDefault.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         expect(devConfig.keys.prod).not.toBeDefined();
@@ -106,7 +107,7 @@ describe("config generation", () => {
     it("should not allow default key as name in returned tree", () => {
         const testFunction = generateConfig.bind(null, {
             file: "invalid1.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
         expect(testFunction)
             .toThrowError("Default key 'default' is not allowed to be nested.");
@@ -116,7 +117,7 @@ describe("config generation", () => {
         const testFunction = generateConfig.bind(null, {
             environment: "prod",
             file: "invalid2.json",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
         expect(testFunction)
             .toThrowError("Environment key 'prod' is not allowed to be nested.");
@@ -126,7 +127,7 @@ describe("config generation", () => {
         const devConfig = generateConfig({
             environment: "dev",
             file: "jsconf.js",
-            dir: path.join(__dirname, "resources")
+            dir: resourceDir
         });
 
         expect(devConfig.env).toBe("myDev");
