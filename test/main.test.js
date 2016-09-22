@@ -24,15 +24,8 @@ describe("config generation", () => {
         expect(config.array).toEqual([1,2,3]);
     });
 
-    it("should return different strings based on env", () => {
+    it("should return default values when no env is set", () => {
         const defaultConfig = generateConfig({
-            environment: "custom",
-            file: "environmentDependent.json",
-            dir: path.join(__dirname, "resources")
-        });
-
-        const devConfig = generateConfig({
-            environment: "dev",
             file: "environmentDependent.json",
             dir: path.join(__dirname, "resources")
         });
@@ -40,10 +33,28 @@ describe("config generation", () => {
         expect(defaultConfig).toBeDefined();
         expect(defaultConfig.env).toBe("default");
         expect(defaultConfig.a).toBe(1);
+    });
+
+    it("should return different strings based on env", () => {
+        const devConfig = generateConfig({
+            environment: "dev",
+            file: "environmentDependent.json",
+            dir: path.join(__dirname, "resources")
+        });
+
+        const prodConfig = generateConfig({
+            environment: "prod",
+            file: "environmentDependent.json",
+            dir: path.join(__dirname, "resources")
+        });
 
         expect(devConfig).toBeDefined();
         expect(devConfig.env).toBe("development");
         expect(devConfig.a).toBe(1);
+
+        expect(prodConfig).toBeDefined();
+        expect(prodConfig.env).toBe("production");
+        expect(prodConfig.a).toBe(1);
     });
 
     it("should return different objects based on env", () => {
