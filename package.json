@@ -1,0 +1,21 @@
+{
+  "name": "js-app-config",
+  "description": "Generates environment dependent json files for inclusion in client side code.",
+  "version": "0.1.0",
+  "author": "Henrik Hansson",
+  "scripts": {
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/henhan/js-app-config.git"
+  },
+  "keywords": [
+    "configuration"
+  ],
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
