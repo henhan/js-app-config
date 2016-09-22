@@ -67,3 +67,16 @@ it("should return different objects based on env", () => {
     expect(prodConfig.keys.key1).toBe("val prod");
     expect(prodConfig.keys.key2).toBe("only prod");
 });
+
+it("should support setting a custom default key", () => {
+    const devConfig = generateConfig({
+        environment: "dev",
+        defaultKey: "customDefault",
+        file: "customDefault.json",
+        dir: path.join(__dirname, "testConfigs")
+    });
+
+    expect(devConfig.keys.prod).not.toBeDefined();
+    expect(devConfig.keys.key1).toBeDefined();
+    expect(devConfig.keys.key1).toBe("val def");
+});

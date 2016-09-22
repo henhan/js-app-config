@@ -12,19 +12,19 @@ function isObject(obj) {
   return obj && typeof obj === "object" && !Array.isArray(obj);
 }
 
-function handleObj(obj, currentEnv, defaultEnv) {
+function handleObj(obj, currentEnv, defaultKey) {
   if (!isObject(obj)) {
     return obj;
   }
   if (obj[currentEnv]) {
     return obj[currentEnv];
   }
-  if (obj[defaultEnv]) {
-    return obj[defaultEnv];
+  if (obj[defaultKey]) {
+    return obj[defaultKey];
   }
   const retObj = {};
   Object.keys(obj).forEach((key) => {
-    retObj[key] = handleObj(obj[key], currentEnv, defaultEnv);
+    retObj[key] = handleObj(obj[key], currentEnv, defaultKey);
   });
   return retObj;
 }
@@ -33,13 +33,13 @@ function generateConfig(options = {}) {
   const envName = options.environment || process.env.NODE_ENV || "dev";
   const inputFile = options.file || "config.json";
   const basePath = options.dir || process.env.CONFIG_BASE_PATH || process.cwd();
-  const defaultEnvironment = "default";
+  const defaultOptionKey = options.defaultKey || "default";
 
   const filePath = path.join(basePath, inputFile);
 
   const inputConfig = loadFile(filePath);
 
-  return handleObj(inputConfig, envName, defaultEnvironment);
+  return handleObj(inputConfig, envName, defaultOptionKey);
 }
 
 module.exports = generateConfig;
