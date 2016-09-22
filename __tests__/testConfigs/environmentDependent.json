@@ -1,0 +1,17 @@
+{
+    "env": {
+        "default": "default",
+        "dev": "development",
+        "prod": "production"
+    },
+    "a": 1,
+    "keys": {
+        "default": {
+            "key1": "val def"
+        },
+        "prod": {
+            "key1": "val prod",
+            "key2": "only prod"
+        }
+    }
+}
