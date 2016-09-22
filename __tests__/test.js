@@ -14,6 +14,15 @@ it("should return the loaded json if no special keys are present", () => {
     expect(config.b).toBe("2");
 });
 
+it("should handle arrays", () =>  {
+    const config = generateConfig({
+        file: "base.json",
+        dir: path.join(__dirname, "testConfigs")
+    });
+
+    expect(config.array).toEqual([1,2,3]);
+});
+
 it("should return different strings based on env", () => {
     const defaultConfig = generateConfig({
         environment: "custom",
