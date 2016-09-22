@@ -18,5 +18,8 @@
   "dependencies": {},
   "devDependencies": {
     "jest": "^15.1.1"
+  },
+  "jest": {
+    "testPathDirs": ["test"]
   }
 }

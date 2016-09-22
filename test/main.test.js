@@ -6,7 +6,7 @@ const path = require("path");
 it("should return the loaded json if no special keys are present", () => {
     const config = generateConfig({
         file: "base.json",
-        dir: path.join(__dirname, "testConfigs")
+        dir: path.join(__dirname, "resources")
     });
 
     expect(config).toBeDefined();
@@ -17,7 +17,7 @@ it("should return the loaded json if no special keys are present", () => {
 it("should handle arrays", () =>  {
     const config = generateConfig({
         file: "base.json",
-        dir: path.join(__dirname, "testConfigs")
+        dir: path.join(__dirname, "resources")
     });
 
     expect(config.array).toEqual([1,2,3]);
@@ -27,13 +27,13 @@ it("should return different strings based on env", () => {
     const defaultConfig = generateConfig({
         environment: "custom",
         file: "environmentDependent.json",
-        dir: path.join(__dirname, "testConfigs")
+        dir: path.join(__dirname, "resources")
     });
 
     const devConfig = generateConfig({
         environment: "dev",
         file: "environmentDependent.json",
-        dir: path.join(__dirname, "testConfigs")
+        dir: path.join(__dirname, "resources")
     });
 
     expect(defaultConfig).toBeDefined();
@@ -49,13 +49,13 @@ it("should return different objects based on env", () => {
     const devConfig = generateConfig({
         environment: "dev",
         file: "environmentDependent.json",
-        dir: path.join(__dirname, "testConfigs")
+        dir: path.join(__dirname, "resources")
     });
 
     const prodConfig = generateConfig({
         environment: "prod",
         file: "environmentDependent.json",
-        dir: path.join(__dirname, "testConfigs")
+        dir: path.join(__dirname, "resources")
     });
 
     expect(devConfig.keys.key1).toBeDefined();
@@ -72,7 +72,7 @@ it("should handle nested objects", () => {
     const devConfig = generateConfig({
         environment: "dev",
         file: "environmentDependent.json",
-        dir: path.join(__dirname, "testConfigs")
+        dir: path.join(__dirname, "resources")
     });
 
     expect(devConfig.nested.one.two).toBe("dev value");
@@ -83,7 +83,7 @@ it("should support setting a custom default key", () => {
         environment: "dev",
         defaultKey: "customDefault",
         file: "customDefault.json",
-        dir: path.join(__dirname, "testConfigs")
+        dir: path.join(__dirname, "resources")
     });
 
     expect(devConfig.keys.prod).not.toBeDefined();
