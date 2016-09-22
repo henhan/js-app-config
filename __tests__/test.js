@@ -1,3 +1,5 @@
+"use strict";
+
 const generateConfig = require("../index.js");
 const path = require("path");
 
