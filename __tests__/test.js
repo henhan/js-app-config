@@ -68,6 +68,16 @@ it("should return different objects based on env", () => {
     expect(prodConfig.keys.key2).toBe("only prod");
 });
 
+it("should handle nested objects", () => {
+    const devConfig = generateConfig({
+        environment: "dev",
+        file: "environmentDependent.json",
+        dir: path.join(__dirname, "testConfigs")
+    });
+
+    expect(devConfig.nested.one.two).toBe("dev value");
+});
+
 it("should support setting a custom default key", () => {
     const devConfig = generateConfig({
         environment: "dev",

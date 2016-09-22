@@ -13,5 +13,13 @@
             "key1": "val prod",
             "key2": "only prod"
         }
+    },
+    "nested": {
+        "one": {
+            "two": {
+                "default": "default value",
+                "dev": "dev value"
+            }
+        }
     }
 }
