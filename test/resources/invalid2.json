@@ -1,0 +1,12 @@
+{
+    "keys": {
+        "default": {
+            "obj": {
+                "ok": "hello"
+            }
+        },
+        "prod": {
+            "prod": "invalid"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "keys": {
+        "default": {
+            "obj": {
+                "default": "hello"
+            }
+        },
+        "prod": {
+            "obj": "val prod"
+        }
+    }
+}

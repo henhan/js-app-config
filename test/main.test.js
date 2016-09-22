@@ -102,4 +102,23 @@ describe("config generation", () => {
         expect(devConfig.keys.key1).toBeDefined();
         expect(devConfig.keys.key1).toBe("val def");
     });
+
+    it("should not allow default key as name in returned tree", () => {
+        const testFunction = generateConfig.bind(null, {
+            file: "invalid1.json",
+            dir: path.join(__dirname, "resources")
+        });
+        expect(testFunction)
+            .toThrowError("Default key 'default' is not allowed to be nested.");
+    });
+
+    it("should not allow environment key as name in returned tree", () => {
+        const testFunction = generateConfig.bind(null, {
+            environment: "prod",
+            file: "invalid2.json",
+            dir: path.join(__dirname, "resources")
+        });
+        expect(testFunction)
+            .toThrowError("Environment key 'prod' is not allowed to be nested.");
+    });
 });
