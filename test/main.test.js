@@ -1,6 +1,6 @@
 "use strict";
 
-const generateConfig = require("../index.js");
+const generateConfig = require("../lib/index.js");
 const path = require("path");
 
 it("should return the loaded json if no special keys are present", () => {

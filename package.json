@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/henhan/js-app-config.git"
