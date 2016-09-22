@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "Henrik Hansson",
   "scripts": {
+    "test": "jest"
   },
   "main": "index.js",
   "repository": {
@@ -14,8 +15,8 @@
     "configuration"
   ],
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "jest": "^15.1.1"
   }
 }
