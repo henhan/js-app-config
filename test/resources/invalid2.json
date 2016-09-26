@@ -6,6 +6,7 @@
             }
         },
         "prod": {
+            "default": "invalid",
             "prod": "invalid"
         }
     }

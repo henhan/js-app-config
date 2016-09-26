@@ -112,7 +112,7 @@ describe("config generation", () => {
             dir: resourceDir
         });
         expect(testFunction)
-            .toThrowError("Default key 'default' is not allowed to be nested.");
+            .toThrowError("Environment keys is not allowed inside environment dependent subtree.");
     });
 
     it("should not allow environment key as name in returned tree", () => {
@@ -122,7 +122,37 @@ describe("config generation", () => {
             dir: resourceDir
         });
         expect(testFunction)
-            .toThrowError("Environment key 'prod' is not allowed to be nested.");
+            .toThrowError("Environment keys is not allowed inside environment dependent subtree.");
+    });
+
+    it("should not allow nested environment key even in unused part of config", () => {
+        const testFunction = generateConfig.bind(null, {
+            environment: "dev",
+            file: "invalid2.json",
+            dir: resourceDir
+        });
+        expect(testFunction)
+            .toThrowError("Environment keys is not allowed inside environment dependent subtree.");
+    });
+
+    it("should not allow an environment key to be used without default being present next to it", () => {
+        const testFunction = generateConfig.bind(null, {
+            environment: "prod",
+            file: "invalid3.json",
+            dir: resourceDir
+        });
+        expect(testFunction)
+            .toThrowError("Environment keys are only allowed as siblings to default key 'default'.");
+    });
+
+    it("should not allow an environment key to be used without default being present even if other env is used", () => {
+        const testFunction = generateConfig.bind(null, {
+            environment: "dev",
+            file: "invalid3.json",
+            dir: resourceDir
+        });
+        expect(testFunction)
+            .toThrowError("Environment keys are only allowed as siblings to default key 'default'.");
     });
 
     it("should handle config put in js file", () => {

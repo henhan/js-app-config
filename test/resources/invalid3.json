@@ -1,0 +1,9 @@
+{
+    "keys": {
+        "default": "yes",
+        "prod": "no"
+    },
+    "values": {
+        "prod": "hello"
+    }
+}
