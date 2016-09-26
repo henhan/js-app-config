@@ -207,7 +207,7 @@ Nested environment key (will throw error):
         }
     }
 
-Using environment key without default being present (dangerous, will make the key present in all environments):
+Using environment key without default being present (will throw error):
 
     {
         "setting1": {
@@ -215,6 +215,6 @@ Using environment key without default being present (dangerous, will make the ke
             "prod": "value 2"
         }
         "setting2": {
-            "prod": "Oops. Will be present in all environments now"
+            "prod": "Not allowed without 'default' present"
         }
     }
